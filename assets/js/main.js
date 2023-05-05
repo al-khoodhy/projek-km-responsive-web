@@ -1,10 +1,57 @@
-/**
-* Template Name: Nova
-* Updated: Mar 10 2023 with Bootstrap v5.2.3
-* Template URL: https://bootstrapmade.com/nova-bootstrap-business-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
+const konten = document.getElementById('konten');
+let usersData = [];
+
+const loadData = async () => {
+  try {
+    const url = await fetch('https://645042bab61a9f0c4d35883b.mockapi.io/users');
+    usersData = await url.json();
+    console.log(usersData)
+    loadUserData(usersData);
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+const loadUserData = (data) => {
+  let no = 1;
+  const output = data.map((el) => {
+    return `
+    <div class="col-lg-6">
+    <article class="d-flex flex-column">
+
+      <div class="post-img">
+        <img src="assets/img/blog/blog-2.jpg" alt="" class="img-fluid">
+      </div>
+
+      <h2 class="title">
+        <a href="${el.url}" >${el.judul}</a>
+      </h2>
+
+      <div class="meta-top">
+        <ul>
+          <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">Author</a></li>
+          <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01">April 15, 2023</time></a></li>
+        </ul>
+      </div>
+
+      <div class="content">
+        <p>
+        ${el.sub}
+        </p>
+      </div>
+
+      <div class="read-more mt-auto align-self-end">
+        <a href="${el.url}">Read More <i class="bi bi-arrow-right"></i></a>
+      </div>
+      
+    </article>
+  </div><!-- End post list item --> 
+        `
+  }).join('')
+  konten.innerHTML = output;
+}
+loadData()
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
