@@ -20,7 +20,7 @@ const loadUserData = (data) => {
     <article class="d-flex flex-column">
 
       <div class="post-img">
-        <img src="assets/img/blog/blog-2.jpg" alt="" class="img-fluid">
+        <img src="assets/img/blog/${el.gambar}" alt="" class="img-fluid">
       </div>
 
       <h2 class="title">
